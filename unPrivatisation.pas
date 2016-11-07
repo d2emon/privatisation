@@ -30,14 +30,14 @@ type
     Label4: TLabel;
     edAddr: TEdit;
     edOwner: TEdit;
-    edBase: TEdit;
     Label5: TLabel;
     Label6: TLabel;
-    Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     Label10: TLabel;
     dblcBook: TDBLookupComboBox;
+    Label11: TLabel;
+    Label12: TLabel;
     procedure edAddrExit(Sender: TObject);
     procedure edOwnerExit(Sender: TObject);
     procedure edBaseExit(Sender: TObject);
@@ -94,22 +94,6 @@ begin
     typelen := LastDelimiter(' ', parsed);
     dmData.tbBuildingsOwnerName.Value := copy(parsed, 0, typelen - 1);
     dmData.tbBuildingsOwnerInit.Value := trim(copy(parsed, typelen + 1, Length(parsed) - typelen));
-  finally
-    //
-  end;
-end;
-
-procedure TfmPrivatisation.edBaseExit(Sender: TObject);
-var
-  parsed: String;
-  typelen: Byte;
-begin
-  // ð2264 13.07.93
-  parsed := trim(edBase.Text);
-  try
-    typelen := LastDelimiter(' ', parsed);
-    dmData.tbBuildingsBaseId.Value := copy(parsed, 0, typelen - 1);
-    dmData.tbBuildingsBaseDate.Value := StrToDate(trim(copy(parsed, typelen + 1, Length(parsed) - typelen)));
   finally
     //
   end;

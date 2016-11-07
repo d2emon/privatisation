@@ -63,30 +63,27 @@ object fmMain: TfmMain
       item
         Expanded = False
         FieldName = 'RegId'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Adress'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Owner_Full'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Base'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RegDate'
-        Width = 64
         Visible = True
       end>
   end

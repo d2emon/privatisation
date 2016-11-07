@@ -121,7 +121,7 @@ object dmData: TdmData
       FieldName = 'BookId'
     end
     object tbBuildingsBook: TStringField
-      DisplayLabel = #1050#1085#1080#1075#1072
+      DisplayLabel = #1044#1077#1083#1086
       FieldKind = fkLookup
       FieldName = 'Book'
       LookupDataSet = tbBooks
@@ -178,7 +178,7 @@ object dmData: TdmData
       ReadOnly = True
     end
     object tbBooksTitle: TStringField
-      DisplayLabel = #1050#1085#1080#1075#1072
+      DisplayLabel = #1044#1077#1083#1086
       FieldName = 'Title'
       Size = 32
     end
