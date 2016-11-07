@@ -64,6 +64,7 @@ begin
   parsed := trim(edAddr.Text);
   try
     typelen := pos('.', parsed);
+    dmData.quAdress.Close;
     dmData.quAdress.ParamByName('Search').Value := '%' + copy(parsed, 0, typelen) + '%';
     dmData.quAdress.Open;
 

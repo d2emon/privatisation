@@ -108,10 +108,17 @@ end;
 procedure TfmMain.aImportExecute(Sender: TObject);
 var
   FileName: String;
+  I: Integer;
   Id: String;
   ForeignId: String;
-  Adress: String;
-  Owner: String;
+  AdressType: String;
+  AdressName: String;
+  AdressBuild: String;
+  AdressFlat: String;
+  OwnerName: String;
+  OwnerInit: String;
+  BaseId: String;
+  BaseDate: String;
   RegDate: String;
   f: TextFile;
 begin
@@ -119,43 +126,55 @@ begin
   begin
     AssignFile(f, odOpen.FileName);
     ReSet(f);
+    I := 0;
     while not Eof(f) do
     begin
       ReadLn(f, Id);
 
       ReadLn(f, ForeignId);
       ReadLn(f, Id);
-      dmData.tbBuildings.Insert;
-      dmData.tbBuildingsBookId.Value := StrToIntDef(ForeignId, 0);
-      dmData.tbBuildingsRegId.Value := Id;
 
-      ReadLn(f, ForeignId);
-      dmData.tbBuildingsAddrType.Value := StrToIntDef(ForeignId, 0);
-      ReadLn(f, Adress);
-      dmData.tbBuildingsAddrName.Value := Adress;
-      ReadLn(f, Adress);
-      dmData.tbBuildingsAddrBuild.Value := Adress;
-      ReadLn(f, Adress);
-      dmData.tbBuildingsAddrFlat.Value := Adress;
+      ReadLn(f, AdressType);
+      ReadLn(f, AdressName);
+      ReadLn(f, AdressBuild);
+      ReadLn(f, AdressFlat);
 
-      ReadLn(f, Owner);
-      dmData.tbBuildingsOwnerName.Value := Owner;
-      ReadLn(f, Owner);
-      dmData.tbBuildingsOwnerInit.Value := Owner;
+      ReadLn(f, OwnerName);
+      ReadLn(f, OwnerInit);
 
-      ReadLn(f, Id);
-      dmData.tbBuildingsBaseId.Value := Id;
+      ReadLn(f, BaseId);
+      ReadLn(f, BaseDate);
       ReadLn(f, RegDate);
-      dmData.tbBuildingsBaseDate.Value := StrToDate(RegDate);
-      ReadLn(f, RegDate);
-      dmData.tbBuildingsRegDate.Value := StrToDate(RegDate);
 
-      dmData.tbBuildings.Post;
+      dmData.quRegId.Close;
+      dmData.quRegId.ParamByName('RegId').Value := Id;
+      dmData.quRegId.Open;
+      If dmData.quRegIdExists.Value = 0 then
+      begin
+        I := I + 1;
+        dmData.tbBuildings.Insert;
+        dmData.tbBuildingsBookId.Value := StrToIntDef(ForeignId, 0);
+        dmData.tbBuildingsRegId.Value := Id;
+
+        dmData.tbBuildingsAddrType.Value := StrToIntDef(AdressType, 0);
+        dmData.tbBuildingsAddrName.Value := AdressName;
+        dmData.tbBuildingsAddrBuild.Value := AdressBuild;
+        dmData.tbBuildingsAddrFlat.Value := AdressFlat;
+
+        dmData.tbBuildingsOwnerName.Value := OwnerName;
+        dmData.tbBuildingsOwnerInit.Value := OwnerInit;
+
+        dmData.tbBuildingsBaseId.Value := BaseId;
+        dmData.tbBuildingsBaseDate.Value := StrToDate(BaseDate);
+        dmData.tbBuildingsRegDate.Value := StrToDate(RegDate);
+
+        dmData.tbBuildings.Post;
+      end;
       ReadLn(f, Id);
     end;
     CloseFile(f);
+    MessageDlg('Данные (' + IntToStr(I) + ' записей) успешно импортированы из ' + odOpen.FileName, mtInformation, [mbOk], 0);
   end;
-  MessageDlg('Данные успешно импортированы из ' + odOpen.FileName, mtInformation, [mbOk], 0);
 end;
 
 end.

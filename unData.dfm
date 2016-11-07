@@ -192,4 +192,23 @@ object dmData: TdmData
     Left = 144
     Top = 112
   end
+  object quRegId: TQuery
+    DatabaseName = 'Privatisation'
+    SQL.Strings = (
+      'SELECT COUNT( Id ) Buildings."Exists"'
+      'FROM "buildings.DB" Buildings'
+      'WHERE  RegId = :RegId ')
+    Left = 24
+    Top = 112
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'RegId'
+        ParamType = ptInput
+      end>
+    object quRegIdExists: TIntegerField
+      FieldName = 'Exists'
+      Origin = 'PRIVATISATION."buildings.DB".Id'
+    end
+  end
 end

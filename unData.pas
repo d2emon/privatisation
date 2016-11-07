@@ -39,6 +39,8 @@ type
     tbBooksTitle: TStringField;
     tbBuildingsBookId: TFloatField;
     tbBuildingsBook: TStringField;
+    quRegId: TQuery;
+    quRegIdExists: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
     procedure tbBuildingsAfterInsert(DataSet: TDataSet);
