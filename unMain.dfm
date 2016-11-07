@@ -37,6 +37,7 @@ object fmMain: TfmMain
     000000000000000000000000000000000000000000000000000000000000}
   Menu = mmMain
   OldCreateOrder = False
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object dbgdRegistration: TDBGrid
@@ -55,27 +56,37 @@ object fmMain: TfmMain
     Columns = <
       item
         Expanded = False
+        FieldName = 'Book'
+        Width = 64
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'RegId'
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Adress'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Owner_Full'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Base'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RegDate'
+        Width = 64
         Visible = True
       end>
   end
@@ -99,6 +110,9 @@ object fmMain: TfmMain
       object N3: TMenuItem
         Action = aAdresses
       end
+      object N4: TMenuItem
+        Action = aBooks
+      end
     end
   end
   object alActions: TActionList
@@ -111,6 +125,10 @@ object fmMain: TfmMain
     object aAdresses: TAction
       Caption = #1040#1076#1088#1077#1089#1072
       OnExecute = aAdressesExecute
+    end
+    object aBooks: TAction
+      Caption = #1050#1085#1080#1075#1080
+      OnExecute = aBooksExecute
     end
   end
 end

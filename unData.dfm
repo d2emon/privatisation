@@ -10,7 +10,7 @@ object dmData: TdmData
     DatabaseName = 'Privatisation'
     DriverName = 'STANDARD'
     Params.Strings = (
-      'path=c:\Users\Dmitry\Documents\GitHub\privatisation\')
+      'path=c:\Users\Dmitry\Documents\GitHub\privatisation\db')
     SessionName = 'Default'
     Left = 24
     Top = 8
@@ -33,6 +33,7 @@ object dmData: TdmData
     end
   end
   object tbBuildings: TTable
+    Active = True
     OnCalcFields = tbBuildingsCalcFields
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
@@ -116,6 +117,19 @@ object dmData: TdmData
       BlobType = ftMemo
       Size = 240
     end
+    object tbBuildingsBookId: TFloatField
+      FieldName = 'BookId'
+    end
+    object tbBuildingsBook: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldKind = fkLookup
+      FieldName = 'Book'
+      LookupDataSet = tbBooks
+      LookupKeyFields = 'Id'
+      LookupResultField = 'Title'
+      KeyFields = 'BookId'
+      Lookup = True
+    end
   end
   object dsAdress: TDataSource
     DataSet = tbAdresses
@@ -133,8 +147,8 @@ object dmData: TdmData
       'SELECT Id, Addr_type'
       'FROM "adresses.db" Adresses'
       'WHERE  Addr_type LIKE :Search ')
-    Left = 88
-    Top = 104
+    Left = 24
+    Top = 64
     ParamData = <
       item
         DataType = ftString
@@ -151,5 +165,27 @@ object dmData: TdmData
       Origin = 'PRIVATISATION."adresses.DB".Addr_type'
       Size = 5
     end
+  end
+  object tbBooks: TTable
+    Active = True
+    DatabaseName = 'Privatisation'
+    SessionName = 'Default'
+    TableName = 'books.db'
+    Left = 88
+    Top = 104
+    object tbBooksId: TAutoIncField
+      FieldName = 'Id'
+      ReadOnly = True
+    end
+    object tbBooksTitle: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldName = 'Title'
+      Size = 32
+    end
+  end
+  object dsBooks: TDataSource
+    DataSet = tbBooks
+    Left = 144
+    Top = 112
   end
 end

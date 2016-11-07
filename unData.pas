@@ -33,6 +33,12 @@ type
     quAdress: TQuery;
     quAdressId: TIntegerField;
     quAdressAddr_type: TStringField;
+    tbBooks: TTable;
+    dsBooks: TDataSource;
+    tbBooksId: TAutoIncField;
+    tbBooksTitle: TStringField;
+    tbBuildingsBookId: TFloatField;
+    tbBuildingsBook: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
   private
@@ -53,9 +59,10 @@ begin
   // dmData.tbAdresses.Close;
   // dmData.tbBuildings.Close;
   dmData.dbPrivatisation.Close;
-  dmData.dbPrivatisation.Params.Add('PATH=' + GetCurrentDir);
+  dmData.dbPrivatisation.Params.Add('PATH=' + GetCurrentDir + '\db');
   dmData.dbPrivatisation.Open;
   dmData.tbAdresses.Open;
+  dmData.tbBooks.Open;
   dmData.tbBuildings.Open;
 end;
 

@@ -36,6 +36,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    Label10: TLabel;
+    dblcBook: TDBLookupComboBox;
     procedure edAddrExit(Sender: TObject);
     procedure edOwnerExit(Sender: TObject);
     procedure edBaseExit(Sender: TObject);

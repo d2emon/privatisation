@@ -17,8 +17,12 @@ type
     N3: TMenuItem;
     dbgdRegistration: TDBGrid;
     Panel1: TPanel;
+    aBooks: TAction;
+    N4: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure aBooksExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,7 +34,7 @@ var
 
 implementation
 
-uses unData, unAdress, unPrivatisation;
+uses unData, unAdress, unPrivatisation, unBooks;
 
 {$R *.dfm}
 
@@ -42,6 +46,16 @@ end;
 procedure TfmMain.aAdressesExecute(Sender: TObject);
 begin
   fmAdress.Show;
+end;
+
+procedure TfmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  dmData.dbPrivatisation.Close;
+end;
+
+procedure TfmMain.aBooksExecute(Sender: TObject);
+begin
+  fmBooks.Show;
 end;
 
 end.
