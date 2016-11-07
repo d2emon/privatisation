@@ -111,6 +111,9 @@ object fmMain: TfmMain
         Action = aBooks
       end
     end
+    object N5: TMenuItem
+      Action = aExport
+    end
   end
   object alActions: TActionList
     Left = 128
@@ -127,8 +130,14 @@ object fmMain: TfmMain
       Caption = #1050#1085#1080#1075#1080
       OnExecute = aBooksExecute
     end
-    object Action1: TAction
-      Caption = 'Action1'
+    object aExport: TAction
+      Caption = #1069#1082#1089#1087#1086#1088#1090
+      OnExecute = aExportExecute
     end
+  end
+  object sdSave: TSaveDialog
+    DefaultExt = 'dat'
+    Left = 160
+    Top = 128
   end
 end

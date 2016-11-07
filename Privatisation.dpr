@@ -12,6 +12,7 @@ uses
 
 begin
   Application.Initialize;
+  Application.Title := 'Приватизация';
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TdmData, dmData);
   Application.CreateForm(TfmAdress, fmAdress);
