@@ -40,7 +40,6 @@ type
     Label12: TLabel;
     procedure edAddrExit(Sender: TObject);
     procedure edOwnerExit(Sender: TObject);
-    procedure edBaseExit(Sender: TObject);
   private
     { Private declarations }
   public

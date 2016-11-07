@@ -33,7 +33,7 @@ object dmData: TdmData
     end
   end
   object tbBuildings: TTable
-    Active = True
+    AfterInsert = tbBuildingsAfterInsert
     OnCalcFields = tbBuildingsCalcFields
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
@@ -43,8 +43,10 @@ object dmData: TdmData
     Top = 56
     object tbBuildingsBase: TStringField
       DisplayLabel = #1054#1089#1085#1086#1074#1072#1085#1080#1077' '#1076#1083#1103' '#1088#1077#1075#1080#1089#1090#1088#1072#1094#1080#1080
+      DisplayWidth = 32
       FieldKind = fkCalculated
       FieldName = 'Base'
+      Size = 96
       Calculated = True
     end
     object tbBuildingsId: TAutoIncField
@@ -82,6 +84,7 @@ object dmData: TdmData
     end
     object tbBuildingsAdress: TStringField
       DisplayLabel = #1040#1076#1088#1077#1089
+      DisplayWidth = 32
       FieldKind = fkCalculated
       FieldName = 'Adress'
       Size = 64
@@ -122,6 +125,7 @@ object dmData: TdmData
     end
     object tbBuildingsBook: TStringField
       DisplayLabel = #1044#1077#1083#1086
+      DisplayWidth = 10
       FieldKind = fkLookup
       FieldName = 'Book'
       LookupDataSet = tbBooks

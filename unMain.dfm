@@ -57,7 +57,6 @@ object fmMain: TfmMain
       item
         Expanded = False
         FieldName = 'Book'
-        Width = 64
         Visible = True
       end
       item
@@ -95,6 +94,7 @@ object fmMain: TfmMain
     Align = alTop
     Caption = 'Panel1'
     TabOrder = 1
+    Visible = False
   end
   object mmMain: TMainMenu
     Left = 176
@@ -126,6 +126,9 @@ object fmMain: TfmMain
     object aBooks: TAction
       Caption = #1050#1085#1080#1075#1080
       OnExecute = aBooksExecute
+    end
+    object Action1: TAction
+      Caption = 'Action1'
     end
   end
 end

@@ -244,7 +244,6 @@ object fmPrivatisation: TfmPrivatisation
         Top = 16
         Width = 97
         Height = 21
-        TabStop = False
         DataField = 'BaseId'
         DataSource = dmData.dsBuildings
         TabOrder = 0
@@ -254,7 +253,6 @@ object fmPrivatisation: TfmPrivatisation
         Top = 16
         Width = 88
         Height = 21
-        TabStop = False
         Anchors = [akLeft, akTop, akRight]
         DataField = 'BaseDate'
         DataSource = dmData.dsBuildings

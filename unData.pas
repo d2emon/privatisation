@@ -41,6 +41,7 @@ type
     tbBuildingsBook: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
+    procedure tbBuildingsAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -80,10 +81,16 @@ begin
     dmData.tbBuildingsOWNERINIT.Value
   ]);
 
-  dmData.tbBuildingsBase.Value := Format('%s %s', [
+  dmData.tbBuildingsBase.Value := Format('Распоряжение № %s от %s', [
     dmData.tbBuildingsBaseId.Value,
     FormatDateTime('dd.mm.y', dmData.tbBuildingsBaseDate.Value)
   ]);
+end;
+
+procedure TdmData.tbBuildingsAfterInsert(DataSet: TDataSet);
+begin
+  dmData.tbBuildingsBookId.Value := dmData.tbBooksId.Value;
+  dmData.tbBuildingsRegId.Value := Format('%d/', [dmData.tbBooksId.Value]);
 end;
 
 end.

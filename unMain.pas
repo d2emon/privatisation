@@ -19,6 +19,7 @@ type
     Panel1: TPanel;
     aBooks: TAction;
     N4: TMenuItem;
+    Action1: TAction;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
