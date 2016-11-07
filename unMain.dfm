@@ -111,8 +111,14 @@ object fmMain: TfmMain
         Action = aBooks
       end
     end
-    object N5: TMenuItem
-      Action = aExport
+    object N6: TMenuItem
+      Caption = #1057#1086#1074#1084#1077#1097#1077#1085#1080#1077
+      object N5: TMenuItem
+        Action = aExport
+      end
+      object N7: TMenuItem
+        Action = aImport
+      end
     end
   end
   object alActions: TActionList
@@ -134,10 +140,21 @@ object fmMain: TfmMain
       Caption = #1069#1082#1089#1087#1086#1088#1090
       OnExecute = aExportExecute
     end
+    object aImport: TAction
+      Caption = #1048#1084#1087#1086#1088#1090
+      OnExecute = aImportExecute
+    end
   end
   object sdSave: TSaveDialog
     DefaultExt = 'dat'
-    Left = 160
-    Top = 128
+    Filter = #1060#1072#1081#1083#1099' '#1076#1072#1085#1085#1099#1093' (*.dat)|*.dat|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)|*.*'
+    Left = 8
+    Top = 8
+  end
+  object odOpen: TOpenDialog
+    DefaultExt = '*.dat'
+    Filter = #1060#1072#1081#1083#1099' '#1076#1072#1085#1085#1099#1093' (*.dat)|*.dat|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)|*.*'
+    Left = 40
+    Top = 8
   end
 end
