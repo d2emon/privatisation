@@ -62,27 +62,30 @@ object fmMain: TfmMain
       item
         Expanded = False
         FieldName = 'RegId'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Adress'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Owner_Full'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Base'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RegDate'
+        Width = 64
         Visible = True
       end>
   end
@@ -133,7 +136,7 @@ object fmMain: TfmMain
       OnExecute = aAdressesExecute
     end
     object aBooks: TAction
-      Caption = #1050#1085#1080#1075#1080
+      Caption = #1044#1077#1083#1072
       OnExecute = aBooksExecute
     end
     object aExport: TAction
