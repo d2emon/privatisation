@@ -6,17 +6,15 @@ object dmData: TdmData
   Height = 257
   Width = 215
   object dbPrivatisation: TDatabase
-    Connected = True
     DatabaseName = 'Privatisation'
     DriverName = 'STANDARD'
     Params.Strings = (
-      'path=c:\Users\Dmitry\Documents\GitHub\privatisation\db')
+      'path=db')
     SessionName = 'Default'
     Left = 24
     Top = 8
   end
   object tbAdresses: TTable
-    Active = True
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
     TableName = 'adresses.db'
@@ -171,7 +169,6 @@ object dmData: TdmData
     end
   end
   object tbBooks: TTable
-    Active = True
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
     TableName = 'books.db'

@@ -92,7 +92,7 @@ end;
 procedure TdmData.tbBuildingsAfterInsert(DataSet: TDataSet);
 begin
   dmData.tbBuildingsBookId.Value := dmData.tbBooksId.Value;
-  dmData.tbBuildingsRegId.Value := Format('%d/', [dmData.tbBooksId.Value]);
+  dmData.tbBuildingsRegId.Value := Format('%s/', [dmData.tbBooksTitle.Value]);
 end;
 
 end.
