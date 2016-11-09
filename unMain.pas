@@ -16,7 +16,7 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     dbgdRegistration: TDBGrid;
-    Panel1: TPanel;
+    pnFilter: TPanel;
     aBooks: TAction;
     N4: TMenuItem;
     aExport: TAction;

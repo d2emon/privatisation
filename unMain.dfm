@@ -89,13 +89,13 @@ object fmMain: TfmMain
         Visible = True
       end>
   end
-  object Panel1: TPanel
+  object pnFilter: TPanel
     Left = 0
     Top = 0
     Width = 912
     Height = 41
     Align = alTop
-    Caption = 'Panel1'
+    Caption = 'pnFilter'
     TabOrder = 1
     Visible = False
   end
