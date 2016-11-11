@@ -6,6 +6,7 @@ object dmData: TdmData
   Height = 257
   Width = 215
   object dbPrivatisation: TDatabase
+    Connected = True
     DatabaseName = 'Privatisation'
     DriverName = 'STANDARD'
     Params.Strings = (
@@ -171,6 +172,7 @@ object dmData: TdmData
   object tbBooks: TTable
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
+    IndexName = 'Book'
     TableName = 'books.db'
     Left = 88
     Top = 104
@@ -192,9 +194,10 @@ object dmData: TdmData
   object quRegId: TQuery
     DatabaseName = 'Privatisation'
     SQL.Strings = (
-      'SELECT COUNT( Id ) Buildings."Exists"'
+      'SELECT COUNT( Id ) Buildings."Exists", Id'
       'FROM "buildings.DB" Buildings'
-      'WHERE  RegId = :RegId ')
+      'WHERE  RegId = :RegId '
+      'GROUP BY Id')
     Left = 24
     Top = 112
     ParamData = <
@@ -205,6 +208,10 @@ object dmData: TdmData
       end>
     object quRegIdExists: TIntegerField
       FieldName = 'Exists'
+      Origin = 'PRIVATISATION."buildings.DB".Id'
+    end
+    object quRegIdId: TIntegerField
+      FieldName = 'Id'
       Origin = 'PRIVATISATION."buildings.DB".Id'
     end
   end

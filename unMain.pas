@@ -121,6 +121,7 @@ var
   BaseDate: String;
   RegDate: String;
   f: TextFile;
+  Edit: Boolean;
 begin
   if odOpen.Execute then
   begin
@@ -149,10 +150,24 @@ begin
       dmData.quRegId.Close;
       dmData.quRegId.ParamByName('RegId').Value := Id;
       dmData.quRegId.Open;
+      Edit := False;
       If dmData.quRegIdExists.Value = 0 then
       begin
         I := I + 1;
         dmData.tbBuildings.Insert;
+        Edit := True;
+      end
+      else
+      begin
+        dmData.tbBuildings.EditKey;
+        dmData.tbBuildingsRegId.Value := Id;
+        dmData.tbBuildings.GotoKey;
+        dmData.tbBuildings.Edit;
+        Edit := True;
+      end;
+
+      if Edit then
+      begin
         dmData.tbBuildingsBookId.Value := StrToIntDef(ForeignId, 0);
         dmData.tbBuildingsRegId.Value := Id;
 
