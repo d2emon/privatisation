@@ -16,6 +16,7 @@ object dmData: TdmData
     Top = 8
   end
   object tbAdresses: TTable
+    Active = True
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
     TableName = 'adresses.db'
@@ -33,10 +34,11 @@ object dmData: TdmData
   end
   object tbBuildings: TTable
     AfterInsert = tbBuildingsAfterInsert
+    BeforePost = tbBuildingsBeforePost
     OnCalcFields = tbBuildingsCalcFields
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
-    IndexFieldNames = 'RegId'
+    IndexFieldNames = 'BookId;RegNum'
     TableName = 'buildings.db'
     Left = 88
     Top = 56
@@ -57,9 +59,6 @@ object dmData: TdmData
       FieldName = 'RegId'
       Size = 8
     end
-    object tbBuildingsAddrType: TFloatField
-      FieldName = 'AddrType'
-    end
     object tbBuildingsAddrName: TStringField
       FieldName = 'AddrName'
       Size = 64
@@ -70,7 +69,7 @@ object dmData: TdmData
     end
     object tbBuildingsAddrFlat: TStringField
       FieldName = 'AddrFlat'
-      Size = 4
+      Size = 16
     end
     object tbBuildingsAddrTypeName: TStringField
       FieldKind = fkLookup
@@ -119,9 +118,6 @@ object dmData: TdmData
       BlobType = ftMemo
       Size = 240
     end
-    object tbBuildingsBookId: TFloatField
-      FieldName = 'BookId'
-    end
     object tbBuildingsBook: TStringField
       DisplayLabel = #1044#1077#1083#1086
       DisplayWidth = 10
@@ -132,6 +128,15 @@ object dmData: TdmData
       LookupResultField = 'Title'
       KeyFields = 'BookId'
       Lookup = True
+    end
+    object tbBuildingsRegNum: TIntegerField
+      FieldName = 'RegNum'
+    end
+    object tbBuildingsBookId: TIntegerField
+      FieldName = 'BookId'
+    end
+    object tbBuildingsAddrType: TIntegerField
+      FieldName = 'AddrType'
     end
   end
   object dsAdress: TDataSource
@@ -170,6 +175,7 @@ object dmData: TdmData
     end
   end
   object tbBooks: TTable
+    Active = True
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
     IndexName = 'Book'

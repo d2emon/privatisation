@@ -1,7 +1,7 @@
 object fmPrivatisation: TfmPrivatisation
   Left = 395
   Top = 167
-  Width = 557
+  Width = 607
   Height = 446
   Caption = #1055#1088#1080#1074#1072#1090#1080#1079#1072#1094#1080#1103
   Color = clBtnFace
@@ -17,7 +17,7 @@ object fmPrivatisation: TfmPrivatisation
   object DBNavigator1: TDBNavigator
     Left = 0
     Top = 383
-    Width = 541
+    Width = 591
     Height = 25
     DataSource = dmData.dsBuildings
     Align = alBottom
@@ -26,12 +26,12 @@ object fmPrivatisation: TfmPrivatisation
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 541
+    Width = 591
     Height = 383
     Align = alClient
     TabOrder = 0
     DesignSize = (
-      541
+      591
       383)
     object Label1: TLabel
       Left = 8
@@ -55,7 +55,7 @@ object fmPrivatisation: TfmPrivatisation
       Caption = ' 01.01.91'
     end
     object Label9: TLabel
-      Left = 336
+      Left = 352
       Top = 8
       Width = 63
       Height = 13
@@ -71,7 +71,7 @@ object fmPrivatisation: TfmPrivatisation
     object dbedId: TDBEdit
       Left = 218
       Top = 40
-      Width = 107
+      Width = 119
       Height = 21
       DataField = 'RegId'
       DataSource = dmData.dsBuildings
@@ -80,15 +80,15 @@ object fmPrivatisation: TfmPrivatisation
     object gbAdress: TGroupBox
       Left = 8
       Top = 64
-      Width = 320
+      Width = 337
       Height = 105
       Caption = #1040#1076#1088#1077#1089
       TabOrder = 1
       DesignSize = (
-        320
+        337
         105)
       object Label2: TLabel
-        Left = 204
+        Left = 197
         Top = 88
         Width = 9
         Height = 13
@@ -96,7 +96,7 @@ object fmPrivatisation: TfmPrivatisation
         Caption = #1076'.'
       end
       object Label3: TLabel
-        Left = 260
+        Left = 253
         Top = 88
         Width = 15
         Height = 13
@@ -126,7 +126,7 @@ object fmPrivatisation: TfmPrivatisation
       object dbedAddrStreet: TDBEdit
         Left = 72
         Top = 80
-        Width = 125
+        Width = 121
         Height = 21
         TabStop = False
         Anchors = [akLeft, akTop, akRight]
@@ -135,7 +135,7 @@ object fmPrivatisation: TfmPrivatisation
         TabOrder = 2
       end
       object dbedAddrBuilding: TDBEdit
-        Left = 220
+        Left = 213
         Top = 80
         Width = 32
         Height = 21
@@ -146,9 +146,9 @@ object fmPrivatisation: TfmPrivatisation
         TabOrder = 3
       end
       object dbedAddrFlat: TDBEdit
-        Left = 284
+        Left = 272
         Top = 80
-        Width = 32
+        Width = 61
         Height = 21
         TabStop = False
         Anchors = [akTop, akRight]
@@ -159,7 +159,7 @@ object fmPrivatisation: TfmPrivatisation
       object edAddr: TEdit
         Left = 8
         Top = 48
-        Width = 305
+        Width = 322
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 1
@@ -169,12 +169,12 @@ object fmPrivatisation: TfmPrivatisation
     object gbOwner: TGroupBox
       Left = 7
       Top = 176
-      Width = 320
+      Width = 338
       Height = 105
       Caption = #1042#1083#1072#1076#1077#1083#1077#1094
       TabOrder = 2
       DesignSize = (
-        320
+        338
         105)
       object Label6: TLabel
         Left = 8
@@ -186,7 +186,7 @@ object fmPrivatisation: TfmPrivatisation
       object dbedSurname: TDBEdit
         Left = 8
         Top = 72
-        Width = 266
+        Width = 284
         Height = 21
         TabStop = False
         Anchors = [akLeft, akTop, akRight]
@@ -195,7 +195,7 @@ object fmPrivatisation: TfmPrivatisation
         TabOrder = 1
       end
       object dbedInit: TDBEdit
-        Left = 281
+        Left = 299
         Top = 71
         Width = 32
         Height = 21
@@ -208,7 +208,7 @@ object fmPrivatisation: TfmPrivatisation
       object edOwner: TEdit
         Left = 8
         Top = 40
-        Width = 305
+        Width = 323
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
@@ -218,12 +218,12 @@ object fmPrivatisation: TfmPrivatisation
     object gbBase: TGroupBox
       Left = 7
       Top = 280
-      Width = 320
+      Width = 338
       Height = 49
       Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077
       TabOrder = 3
       DesignSize = (
-        320
+        338
         49)
       object Label11: TLabel
         Left = 208
@@ -251,7 +251,7 @@ object fmPrivatisation: TfmPrivatisation
       object dbedBaseDate: TDBEdit
         Left = 224
         Top = 16
-        Width = 88
+        Width = 106
         Height = 21
         Anchors = [akLeft, akTop, akRight]
         DataField = 'BaseDate'
@@ -262,16 +262,16 @@ object fmPrivatisation: TfmPrivatisation
     object dbedRegDate: TDBEdit
       Left = 232
       Top = 336
-      Width = 89
+      Width = 105
       Height = 21
       DataField = 'RegDate'
       DataSource = dmData.dsBuildings
       TabOrder = 4
     end
     object dbmmAppendix: TDBMemo
-      Left = 336
+      Left = 352
       Top = 32
-      Width = 198
+      Width = 232
       Height = 343
       Anchors = [akLeft, akTop, akRight, akBottom]
       DataField = 'Appendix'
@@ -281,7 +281,7 @@ object fmPrivatisation: TfmPrivatisation
     object dblcBook: TDBLookupComboBox
       Left = 216
       Top = 8
-      Width = 113
+      Width = 121
       Height = 21
       DataField = 'BookId'
       DataSource = dmData.dsBuildings

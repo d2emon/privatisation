@@ -19,7 +19,6 @@ type
     tbAdressesAddr_type: TStringField;
     tbBuildingsId: TAutoIncField;
     tbBuildingsRegId: TStringField;
-    tbBuildingsAddrType: TFloatField;
     tbBuildingsAddrName: TStringField;
     tbBuildingsAddrBuild: TStringField;
     tbBuildingsAddrFlat: TStringField;
@@ -37,14 +36,17 @@ type
     dsBooks: TDataSource;
     tbBooksId: TAutoIncField;
     tbBooksTitle: TStringField;
-    tbBuildingsBookId: TFloatField;
     tbBuildingsBook: TStringField;
     quRegId: TQuery;
     quRegIdExists: TIntegerField;
     quRegIdId: TIntegerField;
+    tbBuildingsRegNum: TIntegerField;
+    tbBuildingsBookId: TIntegerField;
+    tbBuildingsAddrType: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
     procedure tbBuildingsAfterInsert(DataSet: TDataSet);
+    procedure tbBuildingsBeforePost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -94,6 +96,20 @@ procedure TdmData.tbBuildingsAfterInsert(DataSet: TDataSet);
 begin
   dmData.tbBuildingsBookId.Value := dmData.tbBooksId.Value;
   dmData.tbBuildingsRegId.Value := Format('%s/', [dmData.tbBooksTitle.Value]);
+end;
+
+procedure TdmData.tbBuildingsBeforePost(DataSet: TDataSet);
+var
+  parsed: String;
+  typelen: Integer;
+begin
+  parsed := trim(dmData.tbBuildingsRegId.Value);
+  try
+    typelen := LastDelimiter('/', parsed);
+    parsed := trim(copy(parsed, typelen + 1, Length(parsed) - typelen));
+    dmData.tbBuildingsRegNum.Value := StrToIntDef(parsed, 0);
+  finally
+  end;
 end;
 
 end.

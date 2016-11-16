@@ -62,6 +62,8 @@ var
 begin
   // кв. 50 лет октября 37/32
   parsed := trim(edAddr.Text);
+  if Length(parsed) > 0 then
+  begin
   try
     typelen := pos('.', parsed);
     dmData.quAdress.Close;
@@ -79,7 +81,8 @@ begin
     dmData.tbBuildingsAddrBuild.Value := copy(parsed, 0, typelen - 1);
     dmData.tbBuildingsAddrFlat.Value := trim(copy(parsed, typelen + 1, Length(parsed) - typelen));
   finally
-    //
+    edAddr.Text := '';
+  end;
   end;
 end;
 
@@ -90,12 +93,15 @@ var
 begin
   // Мухамеджанова Ф.М.
   parsed := trim(edOwner.Text);
+  if Length(parsed) > 0 then
+  begin
   try
     typelen := LastDelimiter(' ', parsed);
     dmData.tbBuildingsOwnerName.Value := copy(parsed, 0, typelen - 1);
     dmData.tbBuildingsOwnerInit.Value := trim(copy(parsed, typelen + 1, Length(parsed) - typelen));
   finally
-    //
+    edOwner.Text := '';
+  end;
   end;
 end;
 
