@@ -2,7 +2,7 @@ object fmPrivatisation: TfmPrivatisation
   Left = 395
   Top = 167
   Width = 607
-  Height = 446
+  Height = 478
   Caption = #1055#1088#1080#1074#1072#1090#1080#1079#1072#1094#1080#1103
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object fmPrivatisation: TfmPrivatisation
   TextHeight = 13
   object DBNavigator1: TDBNavigator
     Left = 0
-    Top = 383
+    Top = 415
     Width = 591
     Height = 25
     DataSource = dmData.dsBuildings
@@ -27,12 +27,12 @@ object fmPrivatisation: TfmPrivatisation
     Left = 0
     Top = 0
     Width = 591
-    Height = 383
+    Height = 415
     Align = alClient
     TabOrder = 0
     DesignSize = (
       591
-      383)
+      415)
     object Label1: TLabel
       Left = 8
       Top = 44
@@ -42,14 +42,14 @@ object fmPrivatisation: TfmPrivatisation
     end
     object Label4: TLabel
       Left = 8
-      Top = 344
+      Top = 376
       Width = 93
       Height = 13
       Caption = #1044#1072#1090#1072' '#1088#1077#1075#1080#1089#1090#1088#1072#1094#1080#1080
     end
     object Label8: TLabel
       Left = 232
-      Top = 360
+      Top = 392
       Width = 45
       Height = 13
       Caption = ' 01.01.91'
@@ -81,15 +81,15 @@ object fmPrivatisation: TfmPrivatisation
       Left = 8
       Top = 64
       Width = 337
-      Height = 105
+      Height = 129
       Caption = #1040#1076#1088#1077#1089
       TabOrder = 1
       DesignSize = (
         337
-        105)
+        129)
       object Label2: TLabel
         Left = 197
-        Top = 88
+        Top = 112
         Width = 9
         Height = 13
         Anchors = [akTop, akRight]
@@ -97,7 +97,7 @@ object fmPrivatisation: TfmPrivatisation
       end
       object Label3: TLabel
         Left = 253
-        Top = 88
+        Top = 112
         Width = 15
         Height = 13
         Anchors = [akTop, akRight]
@@ -112,7 +112,7 @@ object fmPrivatisation: TfmPrivatisation
       end
       object dblcAddrType: TDBLookupComboBox
         Left = 8
-        Top = 80
+        Top = 104
         Width = 57
         Height = 21
         DataField = 'AddrType'
@@ -125,7 +125,7 @@ object fmPrivatisation: TfmPrivatisation
       end
       object dbedAddrStreet: TDBEdit
         Left = 72
-        Top = 80
+        Top = 104
         Width = 121
         Height = 21
         TabStop = False
@@ -136,7 +136,7 @@ object fmPrivatisation: TfmPrivatisation
       end
       object dbedAddrBuilding: TDBEdit
         Left = 213
-        Top = 80
+        Top = 104
         Width = 32
         Height = 21
         TabStop = False
@@ -147,7 +147,7 @@ object fmPrivatisation: TfmPrivatisation
       end
       object dbedAddrFlat: TDBEdit
         Left = 272
-        Top = 80
+        Top = 104
         Width = 61
         Height = 21
         TabStop = False
@@ -165,10 +165,22 @@ object fmPrivatisation: TfmPrivatisation
         TabOrder = 1
         OnExit = edAddrExit
       end
+      object dblcCity: TDBLookupComboBox
+        Left = 8
+        Top = 74
+        Width = 321
+        Height = 21
+        DataField = 'CityId'
+        DataSource = dmData.dsBuildings
+        KeyField = 'Id'
+        ListField = 'CityName'
+        ListSource = dmData.dsCities
+        TabOrder = 5
+      end
     end
     object gbOwner: TGroupBox
       Left = 7
-      Top = 176
+      Top = 200
       Width = 338
       Height = 105
       Caption = #1042#1083#1072#1076#1077#1083#1077#1094
@@ -217,7 +229,7 @@ object fmPrivatisation: TfmPrivatisation
     end
     object gbBase: TGroupBox
       Left = 7
-      Top = 280
+      Top = 312
       Width = 338
       Height = 49
       Caption = #1054#1089#1085#1086#1074#1072#1085#1080#1077
@@ -261,7 +273,7 @@ object fmPrivatisation: TfmPrivatisation
     end
     object dbedRegDate: TDBEdit
       Left = 232
-      Top = 336
+      Top = 368
       Width = 105
       Height = 21
       DataField = 'RegDate'
@@ -272,7 +284,7 @@ object fmPrivatisation: TfmPrivatisation
       Left = 352
       Top = 32
       Width = 232
-      Height = 343
+      Height = 375
       Anchors = [akLeft, akTop, akRight, akBottom]
       DataField = 'Appendix'
       DataSource = dmData.dsBuildings

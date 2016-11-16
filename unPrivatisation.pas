@@ -38,6 +38,7 @@ type
     dblcBook: TDBLookupComboBox;
     Label11: TLabel;
     Label12: TLabel;
+    dblcCity: TDBLookupComboBox;
     procedure edAddrExit(Sender: TObject);
     procedure edOwnerExit(Sender: TObject);
   private

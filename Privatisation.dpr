@@ -6,7 +6,8 @@ uses
   unData in 'unData.pas' {dmData: TDataModule},
   unAdress in 'unAdress.pas' {fmAdress},
   unPrivatisation in 'unPrivatisation.pas' {fmPrivatisation},
-  unBooks in 'unBooks.pas' {fmBooks};
+  unBooks in 'unBooks.pas' {fmBooks},
+  unCity in 'unCity.pas' {fmCities};
 
 {$R *.res}
 
@@ -18,5 +19,6 @@ begin
   Application.CreateForm(TfmAdress, fmAdress);
   Application.CreateForm(TfmPrivatisation, fmPrivatisation);
   Application.CreateForm(TfmBooks, fmBooks);
+  Application.CreateForm(TfmCities, fmCities);
   Application.Run;
 end.

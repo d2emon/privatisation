@@ -43,6 +43,12 @@ type
     tbBuildingsRegNum: TIntegerField;
     tbBuildingsBookId: TIntegerField;
     tbBuildingsAddrType: TIntegerField;
+    tbCities: TTable;
+    dsCities: TDataSource;
+    tbCitiesId: TAutoIncField;
+    tbCitiesCityName: TStringField;
+    tbBuildingsCityId: TIntegerField;
+    tbBuildingsCity: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
     procedure tbBuildingsAfterInsert(DataSet: TDataSet);
@@ -69,12 +75,18 @@ begin
   dmData.dbPrivatisation.Open;
   dmData.tbAdresses.Open;
   dmData.tbBooks.Open;
+  dmData.tbCities.Open;
   dmData.tbBuildings.Open;
 end;
 
 procedure TdmData.tbBuildingsCalcFields(DataSet: TDataSet);
+var
+  CityName: String;
 begin
-  dmData.tbBuildingsAdress.Value := Format('%s %s %s/%s', [
+  if dmData.tbBuildingsCityId.Value > 1 then
+    CityName := dmData.tbBuildingsCity.Value + ', ';
+  dmData.tbBuildingsAdress.Value := Format('%s%s %s %s/%s', [
+    CityName,
     dmData.tbBuildingsADDRTYPEName.Value,
     dmData.tbBuildingsADDRNAME.Value,
     dmData.tbBuildingsADDRBUILD.Value,

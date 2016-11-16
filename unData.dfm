@@ -33,12 +33,13 @@ object dmData: TdmData
     end
   end
   object tbBuildings: TTable
+    Active = True
     AfterInsert = tbBuildingsAfterInsert
     BeforePost = tbBuildingsBeforePost
     OnCalcFields = tbBuildingsCalcFields
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
-    IndexFieldNames = 'BookId;RegNum'
+    IndexName = 'RegNumId'
     TableName = 'buildings.db'
     Left = 88
     Top = 56
@@ -138,6 +139,19 @@ object dmData: TdmData
     object tbBuildingsAddrType: TIntegerField
       FieldName = 'AddrType'
     end
+    object tbBuildingsCityId: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'CityId'
+    end
+    object tbBuildingsCity: TStringField
+      FieldKind = fkLookup
+      FieldName = 'City'
+      LookupDataSet = tbCities
+      LookupKeyFields = 'Id'
+      LookupResultField = 'CityName'
+      KeyFields = 'CityId'
+      Lookup = True
+    end
   end
   object dsAdress: TDataSource
     DataSet = tbAdresses
@@ -181,7 +195,7 @@ object dmData: TdmData
     IndexName = 'Book'
     TableName = 'books.db'
     Left = 88
-    Top = 104
+    Top = 112
     object tbBooksId: TAutoIncField
       FieldName = 'Id'
       ReadOnly = True
@@ -220,5 +234,27 @@ object dmData: TdmData
       FieldName = 'Id'
       Origin = 'PRIVATISATION."buildings.DB".Id'
     end
+  end
+  object tbCities: TTable
+    Active = True
+    DatabaseName = 'Privatisation'
+    IndexName = 'City'
+    TableName = 'cities.db'
+    Left = 88
+    Top = 160
+    object tbCitiesId: TAutoIncField
+      FieldName = 'Id'
+      ReadOnly = True
+    end
+    object tbCitiesCityName: TStringField
+      DisplayLabel = #1053#1072#1079#1074#1072#1085#1080#1077
+      FieldName = 'CityName'
+      Size = 16
+    end
+  end
+  object dsCities: TDataSource
+    DataSet = tbCities
+    Left = 144
+    Top = 160
   end
 end

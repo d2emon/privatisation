@@ -26,12 +26,20 @@ type
     aImport: TAction;
     N7: TMenuItem;
     odOpen: TOpenDialog;
+    aFix: TAction;
+    N8: TMenuItem;
+    N9: TMenuItem;
+    aCities: TAction;
+    N10: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure aBooksExecute(Sender: TObject);
     procedure aExportExecute(Sender: TObject);
     procedure aImportExecute(Sender: TObject);
+    procedure dbgdRegistrationDblClick(Sender: TObject);
+    procedure aFixExecute(Sender: TObject);
+    procedure aCitiesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,7 +51,7 @@ var
 
 implementation
 
-uses unData, unAdress, unPrivatisation, unBooks;
+uses unData, unAdress, unPrivatisation, unBooks, unCity;
 
 {$R *.dfm}
 
@@ -101,8 +109,8 @@ begin
       dmData.tbBuildings.Next;
     end;
     CloseFile(f);
+    MessageDlg('Данные успешно экспортированы в ' + sdSave.FileName, mtInformation, [mbOk], 0);
   end;
-  MessageDlg('Данные успешно экспортированы в ' + sdSave.FileName, mtInformation, [mbOk], 0);
 end;
 
 procedure TfmMain.aImportExecute(Sender: TObject);
@@ -190,6 +198,28 @@ begin
     CloseFile(f);
     MessageDlg('Данные (' + IntToStr(I) + ' записей) успешно импортированы из ' + odOpen.FileName, mtInformation, [mbOk], 0);
   end;
+end;
+
+procedure TfmMain.dbgdRegistrationDblClick(Sender: TObject);
+begin
+  aCards.Execute;
+end;
+
+procedure TfmMain.aFixExecute(Sender: TObject);
+begin
+  dmData.tbBuildings.First;
+  while not dmData.tbBuildings.Eof do
+  begin
+    dmData.tbBuildings.Edit;
+    dmData.tbBuildings.Post;
+    dmData.tbBuildings.Next;
+  end;
+  MessageDlg('Данные успешно переиндексированы', mtInformation, [mbOk], 0);
+end;
+
+procedure TfmMain.aCitiesExecute(Sender: TObject);
+begin
+  fmCities.Show;
 end;
 
 end.

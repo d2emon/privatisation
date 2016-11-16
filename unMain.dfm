@@ -53,6 +53,7 @@ object fmMain: TfmMain
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
+    OnDblClick = dbgdRegistrationDblClick
     Columns = <
       item
         Expanded = False
@@ -113,6 +114,9 @@ object fmMain: TfmMain
       object N4: TMenuItem
         Action = aBooks
       end
+      object N10: TMenuItem
+        Action = aCities
+      end
     end
     object N6: TMenuItem
       Caption = #1057#1086#1074#1084#1077#1097#1077#1085#1080#1077
@@ -121,6 +125,12 @@ object fmMain: TfmMain
       end
       object N7: TMenuItem
         Action = aImport
+      end
+    end
+    object N8: TMenuItem
+      Caption = #1057#1077#1088#1074#1080#1089
+      object N9: TMenuItem
+        Action = aFix
       end
     end
   end
@@ -146,6 +156,14 @@ object fmMain: TfmMain
     object aImport: TAction
       Caption = #1048#1084#1087#1086#1088#1090
       OnExecute = aImportExecute
+    end
+    object aFix: TAction
+      Caption = #1055#1077#1088#1077#1080#1085#1076#1077#1082#1089#1080#1088#1086#1074#1072#1090#1100
+      OnExecute = aFixExecute
+    end
+    object aCities: TAction
+      Caption = #1053#1072#1089#1077#1083#1077#1085#1085#1099#1077' '#1087#1091#1085#1082#1090#1099
+      OnExecute = aCitiesExecute
     end
   end
   object sdSave: TSaveDialog
