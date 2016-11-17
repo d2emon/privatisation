@@ -22,6 +22,7 @@ object fmPrivatisation: TfmPrivatisation
     DataSource = dmData.dsBuildings
     Align = alBottom
     TabOrder = 1
+    TabStop = True
   end
   object Panel1: TPanel
     Left = 0
@@ -301,6 +302,7 @@ object fmPrivatisation: TfmPrivatisation
       ListField = 'Title'
       ListSource = dmData.dsBooks
       TabOrder = 6
+      TabStop = False
     end
   end
 end

@@ -37,9 +37,9 @@ type
     procedure aBooksExecute(Sender: TObject);
     procedure aExportExecute(Sender: TObject);
     procedure aImportExecute(Sender: TObject);
-    procedure dbgdRegistrationDblClick(Sender: TObject);
     procedure aFixExecute(Sender: TObject);
     procedure aCitiesExecute(Sender: TObject);
+    procedure dbgdRegistrationKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -200,17 +200,14 @@ begin
   end;
 end;
 
-procedure TfmMain.dbgdRegistrationDblClick(Sender: TObject);
-begin
-  aCards.Execute;
-end;
-
 procedure TfmMain.aFixExecute(Sender: TObject);
 begin
   dmData.tbBuildings.First;
   while not dmData.tbBuildings.Eof do
   begin
     dmData.tbBuildings.Edit;
+    if dmData.tbBuildingsCityId.Value < 1 then
+      dmData.tbBuildingsCityId.Value := 1;
     dmData.tbBuildings.Post;
     dmData.tbBuildings.Next;
   end;
@@ -220,6 +217,11 @@ end;
 procedure TfmMain.aCitiesExecute(Sender: TObject);
 begin
   fmCities.Show;
+end;
+
+procedure TfmMain.dbgdRegistrationKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then aCards.Execute;
 end;
 
 end.

@@ -47,13 +47,15 @@ object fmMain: TfmMain
     Height = 381
     Align = alClient
     DataSource = dmData.dsBuildings
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
-    OnDblClick = dbgdRegistrationDblClick
+    OnDblClick = aCardsExecute
+    OnKeyPress = dbgdRegistrationKeyPress
     Columns = <
       item
         Expanded = False
@@ -68,25 +70,21 @@ object fmMain: TfmMain
       item
         Expanded = False
         FieldName = 'Adress'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Owner_Full'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Base'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RegDate'
-        Width = 64
         Visible = True
       end>
   end
