@@ -16,7 +16,6 @@ object dmData: TdmData
     Top = 8
   end
   object tbAdresses: TTable
-    Active = True
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
     TableName = 'adresses.db'
@@ -33,7 +32,6 @@ object dmData: TdmData
     end
   end
   object tbBuildings: TTable
-    Active = True
     AfterInsert = tbBuildingsAfterInsert
     BeforePost = tbBuildingsBeforePost
     OnCalcFields = tbBuildingsCalcFields
@@ -189,7 +187,6 @@ object dmData: TdmData
     end
   end
   object tbBooks: TTable
-    Active = True
     DatabaseName = 'Privatisation'
     SessionName = 'Default'
     IndexName = 'Book'
@@ -236,7 +233,6 @@ object dmData: TdmData
     end
   end
   object tbCities: TTable
-    Active = True
     DatabaseName = 'Privatisation'
     IndexName = 'City'
     TableName = 'cities.db'

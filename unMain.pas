@@ -167,9 +167,10 @@ begin
       end
       else
       begin
-        dmData.tbBuildings.EditKey;
-        dmData.tbBuildingsRegId.Value := Id;
-        dmData.tbBuildings.GotoKey;
+        // dmData.tbBuildings.SetKey;
+        // dmData.tbBuildingsRegId.Value := Id;
+        // dmData.tbBuildings.GotoKey;
+        dmData.tbBuildings.Locate('RegId', Id, []);
         dmData.tbBuildings.Edit;
         Edit := True;
       end;

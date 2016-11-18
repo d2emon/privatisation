@@ -177,6 +177,7 @@ object fmPrivatisation: TfmPrivatisation
         ListField = 'CityName'
         ListSource = dmData.dsCities
         TabOrder = 5
+        TabStop = False
       end
     end
     object gbOwner: TGroupBox
