@@ -3,7 +3,7 @@ object dmData: TdmData
   OnCreate = DataModuleCreate
   Left = 192
   Top = 124
-  Height = 257
+  Height = 363
   Width = 215
   object dbPrivatisation: TDatabase
     Connected = True
@@ -252,5 +252,56 @@ object dmData: TdmData
     DataSet = tbCities
     Left = 144
     Top = 160
+  end
+  object quBookId: TQuery
+    DatabaseName = 'Privatisation'
+    SQL.Strings = (
+      'SELECT Id'
+      'FROM "books.db" Books'
+      'WHERE  Title = :BookId')
+    Left = 24
+    Top = 160
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'BookId'
+        ParamType = ptUnknown
+      end>
+    object quBookIdId: TIntegerField
+      FieldName = 'Id'
+      Origin = 'PRIVATISATION."books.DB".Id'
+    end
+  end
+  object quCityId: TQuery
+    DatabaseName = 'Privatisation'
+    SQL.Strings = (
+      'SELECT Id'
+      'FROM "cities.db" Cities'
+      'WHERE  CityName = :CityName')
+    Left = 24
+    Top = 208
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'CityName'
+        ParamType = ptUnknown
+      end>
+    object quCityIdId: TIntegerField
+      FieldName = 'Id'
+      Origin = 'PRIVATISATION."cities.DB".Id'
+    end
+  end
+  object quBookChange: TQuery
+    DatabaseName = 'Privatisation'
+    SQL.Strings = (
+      'UPDATE "buildings.DB" Buildings SET BookId=:BookId')
+    Left = 88
+    Top = 208
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'BookId'
+        ParamType = ptUnknown
+      end>
   end
 end

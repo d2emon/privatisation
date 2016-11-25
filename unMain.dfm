@@ -1,7 +1,7 @@
 object fmMain: TfmMain
-  Left = 280
+  Left = 350
   Top = 130
-  Width = 928
+  Width = 858
   Height = 480
   Caption = #1055#1088#1080#1074#1072#1090#1080#1079#1072#1094#1080#1103
   Color = clBtnFace
@@ -37,13 +37,18 @@ object fmMain: TfmMain
     000000000000000000000000000000000000000000000000000000000000}
   Menu = mmMain
   OldCreateOrder = False
+  Position = poScreenCenter
+  WindowState = wsMaximized
   OnClose = FormClose
+  DesignSize = (
+    842
+    422)
   PixelsPerInch = 96
   TextHeight = 13
   object dbgdRegistration: TDBGrid
     Left = 0
     Top = 41
-    Width = 912
+    Width = 842
     Height = 381
     Align = alClient
     DataSource = dmData.dsBuildings
@@ -70,32 +75,45 @@ object fmMain: TfmMain
       item
         Expanded = False
         FieldName = 'Adress'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Owner_Full'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Base'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RegDate'
+        Width = 64
         Visible = True
       end>
   end
   object pnFilter: TPanel
     Left = 0
     Top = 0
-    Width = 912
+    Width = 842
     Height = 41
     Align = alTop
     Caption = 'pnFilter'
     TabOrder = 1
+    Visible = False
+  end
+  object pbStatus: TProgressBar
+    Left = 16
+    Top = 8
+    Width = 801
+    Height = 17
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 2
     Visible = False
   end
   object mmMain: TMainMenu
@@ -129,6 +147,10 @@ object fmMain: TfmMain
       Caption = #1057#1077#1088#1074#1080#1089
       object N9: TMenuItem
         Action = aFix
+      end
+      object N11: TMenuItem
+        Caption = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100' '#1074' '#1076#1077#1083#1086
+        OnClick = N11Click
       end
     end
   end

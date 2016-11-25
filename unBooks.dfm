@@ -3,7 +3,7 @@ object fmBooks: TfmBooks
   Top = 149
   Width = 224
   Height = 316
-  Caption = #1050#1085#1080#1075#1080
+  Caption = #1044#1077#1083#1072
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

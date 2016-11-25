@@ -49,6 +49,11 @@ type
     tbCitiesCityName: TStringField;
     tbBuildingsCityId: TIntegerField;
     tbBuildingsCity: TStringField;
+    quBookId: TQuery;
+    quBookIdId: TIntegerField;
+    quCityId: TQuery;
+    quCityIdId: TIntegerField;
+    quBookChange: TQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
     procedure tbBuildingsAfterInsert(DataSet: TDataSet);

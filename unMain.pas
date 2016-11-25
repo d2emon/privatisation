@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ActnList, Menus, Grids, DBGrids, ExtCtrls;
+  Dialogs, ActnList, Menus, Grids, DBGrids, ExtCtrls, ComCtrls;
 
 type
   TfmMain = class(TForm)
@@ -31,6 +31,8 @@ type
     N9: TMenuItem;
     aCities: TAction;
     N10: TMenuItem;
+    pbStatus: TProgressBar;
+    N11: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -40,6 +42,7 @@ type
     procedure aFixExecute(Sender: TObject);
     procedure aCitiesExecute(Sender: TObject);
     procedure dbgdRegistrationKeyPress(Sender: TObject; var Key: Char);
+    procedure N11Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,21 +81,37 @@ end;
 procedure TfmMain.aExportExecute(Sender: TObject);
 var
   f: TextFile;
+  mf: TextFile;
+  MemoFile: String;
+  MemoId: Integer;
 begin
   sdSave.FileName := FormatDateTime('dd.mm.y', Now);
   if sdSave.Execute then
   begin
     AssignFile(f, sdSave.FileName);
     ReWrite(f);
+
+    AssignFile(mf, sdSave.FileName + '.lst');
+    ReWrite(mf);
+
+    pbStatus.Position := 0;
+    pbStatus.Max := dmData.tbBuildings.RecordCount;
+    pbStatus.Show;
+
     dmData.tbBuildings.First;
     while not dmData.tbBuildings.Eof do
     begin
       WriteLn(f, dmData.tbBuildingsId.Value);
 
-      WriteLn(f, dmData.tbBuildingsBookId.AsString);
+      WriteLn(f, dmData.tbBuildingsBook.Value);
       WriteLn(f, dmData.tbBuildingsRegId.Value);
 
-      WriteLn(f, dmData.tbBuildingsAddrType.AsString);
+      if dmData.tbBuildingsCityId.Value > 1 then
+        WriteLn(f, dmData.tbBuildingsAddrType.AsString +
+          ':' + dmData.tbBuildingsCity.Value)
+      else
+        WriteLn(f, dmData.tbBuildingsAddrType.AsString);
+        
       WriteLn(f, dmData.tbBuildingsAddrName.Value);
       WriteLn(f, dmData.tbBuildingsAddrBuild.Value);
       WriteLn(f, dmData.tbBuildingsAddrFlat.Value);
@@ -106,9 +125,23 @@ begin
       WriteLn(f, FormatDateTime('dd.mm.y', dmData.tbBuildingsRegDate.Value));
 
       WriteLn(f, '----');
+
+      if dmData.tbBuildingsAppendix.Value <> '' then
+      begin
+        MemoId := MemoId + 1;
+        MemoFile := sdSave.FileName + IntToStr(MemoId) + '.txt';
+
+        Writeln(mf, dmData.tbBuildingsRegId.Value);
+        Writeln(mf, MemoFile);
+
+        dmData.tbBuildingsAppendix.SaveToFile(MemoFile);
+      end;
       dmData.tbBuildings.Next;
+      pbStatus.Position := pbStatus.Position + 1;
     end;
+    CloseFile(mf);
     CloseFile(f);
+    pbStatus.Hide;
     MessageDlg('Данные успешно экспортированы в ' + sdSave.FileName, mtInformation, [mbOk], 0);
   end;
 end;
@@ -118,7 +151,11 @@ var
   FileName: String;
   I: Integer;
   Id: String;
+  BookId: Integer;
   ForeignId: String;
+  SepPos: Integer;
+  City: String;
+  CityId: Integer;
   AdressType: String;
   AdressName: String;
   AdressBuild: String;
@@ -175,10 +212,50 @@ begin
         Edit := True;
       end;
 
+      dmData.quBookId.Close;
+      dmData.quBookId.ParamByName('BookId').Value := ForeignId;
+      dmData.quBookId.Open;
+      If dmData.quBookId.RecordCount = 0 then
+      begin
+        dmData.tbBooks.Insert;
+        dmData.tbBooksTitle.Value := ForeignId;
+        dmData.tbBooks.Post;
+        BookId := dmData.tbBooksId.Value;
+      end
+      else
+      begin
+        BookId := dmData.quBookIdId.Value;
+      end;
+
       if Edit then
       begin
-        dmData.tbBuildingsBookId.Value := StrToIntDef(ForeignId, 0);
+        dmData.tbBuildingsBookId.Value := BookId;
         dmData.tbBuildingsRegId.Value := Id;
+
+        SepPos := Pos(':', AdressType);
+
+        if SepPos > 0 then
+        begin
+          City := Copy(AdressType, SepPos + 1, Length(AdressType) - SepPos);
+
+          dmData.quCityId.Close;
+          dmData.quCityId.ParamByName('CityName').Value := City;
+          dmData.quCityId.Open;
+          If dmData.quCityId.RecordCount = 0 then
+          begin
+            dmData.tbCities.Insert;
+            dmData.tbCitiesCityName.Value := City;
+            dmData.tbCities.Post;
+            CityId := dmData.tbCitiesId.Value;
+          end
+          else
+          begin
+            CityId := dmData.quCityIdId.Value;
+          end;
+          dmData.tbBuildingsCityId.Value := CityId;
+
+          AdressType := Copy(AdressType, 0, SepPos - 1);
+        end;
 
         dmData.tbBuildingsAddrType.Value := StrToIntDef(AdressType, 0);
         dmData.tbBuildingsAddrName.Value := AdressName;
@@ -223,6 +300,39 @@ end;
 procedure TfmMain.dbgdRegistrationKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then aCards.Execute;
+end;
+
+procedure TfmMain.N11Click(Sender: TObject);
+var
+  BookId: Integer;
+  Book: String;
+begin
+  Book := InputBox('Дело', 'Переместить в дело ', '');
+  If Book <> '' then
+  begin
+    if MessageDlg('Вы действительно хотите переместить все записи в дело №' + Book + '?',
+      mtWarning, [mbYes, mbNo], 0) = mrYes then
+    begin
+      dmData.quBookId.Close;
+      dmData.quBookId.ParamByName('BookId').Value := Book;
+      dmData.quBookId.Open;
+      If dmData.quBookId.RecordCount = 0 then
+      begin
+        dmData.tbBooks.Insert;
+        dmData.tbBooksTitle.Value := Book;
+        dmData.tbBooks.Post;
+        BookId := dmData.tbBooksId.Value;
+      end
+      else
+      begin
+        BookId := dmData.quBookIdId.Value;
+      end;
+      dmData.quBookChange.ParamByName('BookId').Value := BookId;
+      dmData.quBookChange.ExecSQL;
+      dmData.tbBuildings.Refresh;
+      ShowMessage('Все записи успешно перенесены в дело №' + Book);
+    end;
+  end;
 end;
 
 end.
