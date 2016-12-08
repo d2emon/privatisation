@@ -152,6 +152,10 @@ object fmMain: TfmMain
         Caption = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100' '#1074' '#1076#1077#1083#1086
         OnClick = N11Click
       end
+      object N12: TMenuItem
+        Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+        OnClick = tmAutosaveTimer
+      end
     end
   end
   object alActions: TActionList
@@ -197,5 +201,11 @@ object fmMain: TfmMain
     Filter = #1060#1072#1081#1083#1099' '#1076#1072#1085#1085#1099#1093' (*.dat)|*.dat|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)|*.*'
     Left = 40
     Top = 8
+  end
+  object tmAutosave: TTimer
+    Interval = 1500000
+    OnTimer = tmAutosaveTimer
+    Left = 16
+    Top = 64
   end
 end

@@ -33,6 +33,8 @@ type
     N10: TMenuItem;
     pbStatus: TProgressBar;
     N11: TMenuItem;
+    tmAutosave: TTimer;
+    N12: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -43,6 +45,7 @@ type
     procedure aCitiesExecute(Sender: TObject);
     procedure dbgdRegistrationKeyPress(Sender: TObject; var Key: Char);
     procedure N11Click(Sender: TObject);
+    procedure tmAutosaveTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -333,6 +336,19 @@ begin
       ShowMessage('Все записи успешно перенесены в дело №' + Book);
     end;
   end;
+end;
+
+procedure TfmMain.tmAutosaveTimer(Sender: TObject);
+var
+  RowId: Integer;
+begin
+  RowId := dmData.tbBuildingsId.Value;
+
+  dmData.OnCreate(nil);
+  fmMain.Caption := 'Приватизация (Последнее сохранение ' + FormatDateTime('t', Now) + ')';
+
+  dmData.tbBuildings.Locate('Id', RowId, []);
+  // dmData.tbBuildings.
 end;
 
 end.

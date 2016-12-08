@@ -92,8 +92,9 @@ object dmData: TdmData
       Size = 64
     end
     object tbBuildingsOwnerInit: TStringField
+      DisplayWidth = 8
       FieldName = 'OwnerInit'
-      Size = 5
+      Size = 8
     end
     object tbBuildingsOwner_Full: TStringField
       DisplayLabel = #1042#1083#1072#1076#1077#1083#1077#1094
@@ -244,8 +245,9 @@ object dmData: TdmData
     end
     object tbCitiesCityName: TStringField
       DisplayLabel = #1053#1072#1079#1074#1072#1085#1080#1077
+      DisplayWidth = 32
       FieldName = 'CityName'
-      Size = 16
+      Size = 32
     end
   end
   object dsCities: TDataSource
