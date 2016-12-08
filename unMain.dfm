@@ -156,6 +156,9 @@ object fmMain: TfmMain
         Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
         OnClick = tmAutosaveTimer
       end
+      object N13: TMenuItem
+        Action = aFindLoose
+      end
     end
   end
   object alActions: TActionList
@@ -188,6 +191,10 @@ object fmMain: TfmMain
     object aCities: TAction
       Caption = #1053#1072#1089#1077#1083#1077#1085#1085#1099#1077' '#1087#1091#1085#1082#1090#1099
       OnExecute = aCitiesExecute
+    end
+    object aFindLoose: TAction
+      Caption = #1055#1086#1080#1089#1082' '#1087#1088#1086#1087#1091#1097#1077#1085#1085#1099#1093
+      OnExecute = aFindLooseExecute
     end
   end
   object sdSave: TSaveDialog

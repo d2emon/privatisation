@@ -306,4 +306,29 @@ object dmData: TdmData
         ParamType = ptUnknown
       end>
   end
+  object quMissed: TQuery
+    DatabaseName = 'Privatisation'
+    SQL.Strings = (
+      'SELECT COUNT( Id ) CountId'
+      'FROM "buildings.DB" Buildings'
+      'WHERE   (BookId = :BookId)  '
+      '   AND  (RegNum = :RegId)  ')
+    Left = 24
+    Top = 256
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'BookId'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftInteger
+        Name = 'RegId'
+        ParamType = ptUnknown
+      end>
+    object quMissedCountId: TIntegerField
+      FieldName = 'CountId'
+      Origin = 'PRIVATISATION."buildings.DB".Id'
+    end
+  end
 end

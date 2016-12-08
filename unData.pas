@@ -54,6 +54,8 @@ type
     quCityId: TQuery;
     quCityIdId: TIntegerField;
     quBookChange: TQuery;
+    quMissed: TQuery;
+    quMissedCountId: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tbBuildingsCalcFields(DataSet: TDataSet);
     procedure tbBuildingsAfterInsert(DataSet: TDataSet);

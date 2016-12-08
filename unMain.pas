@@ -35,6 +35,8 @@ type
     N11: TMenuItem;
     tmAutosave: TTimer;
     N12: TMenuItem;
+    aFindLoose: TAction;
+    N13: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -46,6 +48,7 @@ type
     procedure dbgdRegistrationKeyPress(Sender: TObject; var Key: Char);
     procedure N11Click(Sender: TObject);
     procedure tmAutosaveTimer(Sender: TObject);
+    procedure aFindLooseExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -349,6 +352,45 @@ begin
 
   dmData.tbBuildings.Locate('Id', RowId, []);
   // dmData.tbBuildings.
+end;
+
+procedure TfmMain.aFindLooseExecute(Sender: TObject);
+var
+  BookToSearch: String;
+  BookId: Integer;
+  SearchId: Integer;
+  SearchFrom: Integer;
+  SearchTo: Integer;
+  Missed: String;
+begin
+  BookToSearch := InputBox('Поиск пропущенных', 'Искать в деле ', dmData.tbBooksTitle.Value);
+
+  dmData.quBookId.Close;
+  dmData.quBookId.ParamByName('BookId').Value := BookToSearch;
+  dmData.quBookId.Open;
+
+  BookId := dmData.quBookIdId.Value;
+  SearchFrom := StrToIntDef(InputBox('Поиск пропущенных', 'Первая запись', '1'), 0);
+  SearchTo := StrToIntDef(InputBox('Поиск пропущенных', 'Последняя запись', IntToStr(dmData.tbBuildingsRegNum.Value)), 0);
+
+  Missed := '';
+  for SearchId := SearchFrom to SearchTo do
+  begin
+    dmData.quMissed.Close;
+    dmData.quMissed.ParamByName('BookId').Value := BookId;
+    dmData.quMissed.ParamByName('RegId').Value := SearchId;
+    dmData.quMissed.Open;
+
+    if dmData.quMissedCountId.Value = 0 then
+    begin
+      if Length(Missed) > 0 then
+        Missed := Missed + ', ' + BookToSearch + '/' + IntToStr(SearchId)
+      else
+        Missed := 'Пропущены записи: ' + BookToSearch + '/' + IntToStr(SearchId);
+    end;
+  end;
+
+  ShowMessage(Missed);
 end;
 
 end.
