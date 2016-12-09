@@ -63,6 +63,7 @@ type
   private
     { Private declarations }
   public
+    procedure Log(LogData: String);
     { Public declarations }
   end;
 
@@ -78,12 +79,19 @@ begin
   // dmData.tbAdresses.Close;
   // dmData.tbBuildings.Close;
   dmData.dbPrivatisation.Close;
-  dmData.dbPrivatisation.Params.Add('PATH=' + GetCurrentDir + '\db');
+  dmData.dbPrivatisation.Params.Values['PATH'] := GetCurrentDir + '\db';
+
+  Log('Current dir is "' + GetCurrentDir + '"');
+  Log('Path is ' + dmData.dbPrivatisation.Params.Values['PATH']);
+
+  // dmData.dbPrivatisation.Params.Add('PATH=' + GetCurrentDir + '\db');
   dmData.dbPrivatisation.Open;
   dmData.tbAdresses.Open;
   dmData.tbBooks.Open;
   dmData.tbCities.Open;
   dmData.tbBuildings.Open;
+
+  Log('Database opened');
 end;
 
 procedure TdmData.tbBuildingsCalcFields(DataSet: TDataSet);
@@ -115,6 +123,8 @@ procedure TdmData.tbBuildingsAfterInsert(DataSet: TDataSet);
 begin
   dmData.tbBuildingsBookId.Value := dmData.tbBooksId.Value;
   dmData.tbBuildingsRegId.Value := Format('%s/', [dmData.tbBooksTitle.Value]);
+
+  Log('Set BookId to "' + dmData.tbBuildingsRegId.Value + '"');
 end;
 
 procedure TdmData.tbBuildingsBeforePost(DataSet: TDataSet);
@@ -123,12 +133,31 @@ var
   typelen: Integer;
 begin
   parsed := trim(dmData.tbBuildingsRegId.Value);
+  
+  Log('Trying to post "' + dmData.tbBuildingsRegId.Value + '"');
+
   try
     typelen := LastDelimiter('/', parsed);
     parsed := trim(copy(parsed, typelen + 1, Length(parsed) - typelen));
     dmData.tbBuildingsRegNum.Value := StrToIntDef(parsed, 0);
+
+    Log('Set RegNum to "' + IntToStr(dmData.tbBuildingsRegNum.Value) + '"');
   finally
+    Log('Erroron posting');
   end;
+end;
+
+procedure TdmData.Log(LogData: String);
+var
+  f: TextFile;
+begin
+  AssignFile(f, 'privatisation.log');
+  if not FileExists('privatisation.log') then
+    Rewrite(f)
+  else
+    Append(f);
+  WriteLn(f, FormatDateTime('ddddd-tt', Now) + #9 + LogData);
+  CloseFile(f);
 end;
 
 end.

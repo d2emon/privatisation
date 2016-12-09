@@ -345,13 +345,21 @@ procedure TfmMain.tmAutosaveTimer(Sender: TObject);
 var
   RowId: Integer;
 begin
+  dmData.Log('Saving database');
+
   RowId := dmData.tbBuildingsId.Value;
+
+  dmData.Log('Current row is ' + RowId);
 
   dmData.OnCreate(nil);
   fmMain.Caption := 'Приватизация (Последнее сохранение ' + FormatDateTime('t', Now) + ')';
 
+  dmData.Log('Saved');
+
   dmData.tbBuildings.Locate('Id', RowId, []);
   // dmData.tbBuildings.
+
+  dmData.Log('Current row is ' + RowId + ' again');
 end;
 
 procedure TfmMain.aFindLooseExecute(Sender: TObject);
@@ -372,6 +380,8 @@ begin
   BookId := dmData.quBookIdId.Value;
   SearchFrom := StrToIntDef(InputBox('Поиск пропущенных', 'Первая запись', '1'), 0);
   SearchTo := StrToIntDef(InputBox('Поиск пропущенных', 'Последняя запись', IntToStr(dmData.tbBuildingsRegNum.Value)), 0);
+
+  if (SearchFrom = 0) or (SearchTo = 0) then exit;
 
   Missed := '';
   for SearchId := SearchFrom to SearchTo do
