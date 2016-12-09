@@ -349,7 +349,7 @@ begin
 
   RowId := dmData.tbBuildingsId.Value;
 
-  dmData.Log('Current row is ' + RowId);
+  dmData.Log('Current row is ' + IntToStr(RowId));
 
   dmData.OnCreate(nil);
   fmMain.Caption := 'Приватизация (Последнее сохранение ' + FormatDateTime('t', Now) + ')';
@@ -359,7 +359,7 @@ begin
   dmData.tbBuildings.Locate('Id', RowId, []);
   // dmData.tbBuildings.
 
-  dmData.Log('Current row is ' + RowId + ' again');
+  dmData.Log('Current row is ' + IntToStr(RowId) + ' again');
 end;
 
 procedure TfmMain.aFindLooseExecute(Sender: TObject);
