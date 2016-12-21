@@ -72,6 +72,8 @@ var
 
 implementation
 
+uses unMain;
+
 {$R *.dfm}
 
 procedure TdmData.DataModuleCreate(Sender: TObject);
@@ -79,7 +81,7 @@ begin
   // dmData.tbAdresses.Close;
   // dmData.tbBuildings.Close;
   dmData.dbPrivatisation.Close;
-  dmData.dbPrivatisation.Params.Values['PATH'] := GetCurrentDir + '\db';
+  dmData.dbPrivatisation.Params.Values['PATH'] := fmMain.DBPath; // GetCurrentDir + '\db';
 
   Log('Current dir is "' + GetCurrentDir + '"');
   Log('Path is ' + dmData.dbPrivatisation.Params.Values['PATH']);

@@ -49,9 +49,11 @@ type
     procedure N11Click(Sender: TObject);
     procedure tmAutosaveTimer(Sender: TObject);
     procedure aFindLooseExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
+    DBPath: String;
     { Public declarations }
   end;
 
@@ -401,6 +403,11 @@ begin
   end;
 
   ShowMessage(Missed);
+end;
+
+procedure TfmMain.FormCreate(Sender: TObject);
+begin
+  DBPath := GetCurrentDir + '\db';
 end;
 
 end.

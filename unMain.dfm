@@ -40,6 +40,7 @@ object fmMain: TfmMain
   Position = poScreenCenter
   WindowState = wsMaximized
   OnClose = FormClose
+  OnCreate = FormCreate
   DesignSize = (
     842
     422)
