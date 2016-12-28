@@ -145,7 +145,7 @@ begin
 
     Log('Set RegNum to "' + IntToStr(dmData.tbBuildingsRegNum.Value) + '"');
   finally
-    Log('Erroron posting');
+    Log('Error on posting');
   end;
 end;
 

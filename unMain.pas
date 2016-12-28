@@ -37,6 +37,7 @@ type
     N12: TMenuItem;
     aFindLoose: TAction;
     N13: TMenuItem;
+    miAutosave: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -50,6 +51,7 @@ type
     procedure tmAutosaveTimer(Sender: TObject);
     procedure aFindLooseExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure miAutosaveClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -408,6 +410,11 @@ end;
 procedure TfmMain.FormCreate(Sender: TObject);
 begin
   DBPath := GetCurrentDir + '\db';
+end;
+
+procedure TfmMain.miAutosaveClick(Sender: TObject);
+begin
+  tmAutosave.Enabled := miAutosave.Checked;
 end;
 
 end.

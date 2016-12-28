@@ -98,6 +98,15 @@ object fmMain: TfmMain
         Visible = True
       end>
   end
+  object pbStatus: TProgressBar
+    Left = 16
+    Top = 8
+    Width = 801
+    Height = 17
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 2
+    Visible = False
+  end
   object pnFilter: TPanel
     Left = 0
     Top = 0
@@ -106,15 +115,6 @@ object fmMain: TfmMain
     Align = alTop
     Caption = 'pnFilter'
     TabOrder = 1
-    Visible = False
-  end
-  object pbStatus: TProgressBar
-    Left = 16
-    Top = 8
-    Width = 801
-    Height = 17
-    Anchors = [akLeft, akTop, akRight]
-    TabOrder = 2
     Visible = False
   end
   object mmMain: TMainMenu
@@ -159,6 +159,11 @@ object fmMain: TfmMain
       end
       object N13: TMenuItem
         Action = aFindLoose
+      end
+      object miAutosave: TMenuItem
+        AutoCheck = True
+        Caption = #1040#1074#1090#1086#1089#1086#1093#1088#1072#1085#1077#1085#1080#1077
+        OnClick = miAutosaveClick
       end
     end
   end
@@ -211,6 +216,7 @@ object fmMain: TfmMain
     Top = 8
   end
   object tmAutosave: TTimer
+    Enabled = False
     Interval = 1500000
     OnTimer = tmAutosaveTimer
     Left = 16
