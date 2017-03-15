@@ -38,6 +38,9 @@ type
     aFindLoose: TAction;
     N13: TMenuItem;
     miAutosave: TMenuItem;
+    sdYml: TSaveDialog;
+    aYML: TAction;
+    YML1: TMenuItem;
     procedure aCardsExecute(Sender: TObject);
     procedure aAdressesExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -52,6 +55,7 @@ type
     procedure aFindLooseExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure miAutosaveClick(Sender: TObject);
+    procedure aYMLExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,7 +125,7 @@ begin
           ':' + dmData.tbBuildingsCity.Value)
       else
         WriteLn(f, dmData.tbBuildingsAddrType.AsString);
-        
+
       WriteLn(f, dmData.tbBuildingsAddrName.Value);
       WriteLn(f, dmData.tbBuildingsAddrBuild.Value);
       WriteLn(f, dmData.tbBuildingsAddrFlat.Value);
@@ -415,6 +419,67 @@ end;
 procedure TfmMain.miAutosaveClick(Sender: TObject);
 begin
   tmAutosave.Enabled := miAutosave.Checked;
+end;
+
+procedure TfmMain.aYMLExecute(Sender: TObject);
+var
+  f: TextFile;
+  mf: TextFile;
+  MemoFile: String;
+  MemoId: Integer;
+begin
+  sdYML.FileName := FormatDateTime('dd.mm.y', Now) + '.yml';
+  if sdYML.Execute then
+  begin
+    AssignFile(f, sdYML.FileName);
+    ReWrite(f);
+
+    pbStatus.Position := 0;
+    pbStatus.Max := dmData.tbBuildings.RecordCount;
+    pbStatus.Show;
+
+    dmData.tbBuildings.First;
+    while not dmData.tbBuildings.Eof do
+    begin
+      WriteLn(f, '-');
+      WriteLn(f, '  id: ' + dmData.tbBuildingsId.AsString);
+
+      WriteLn(f, '  book:');
+      // WriteLn(f, '    id: ' + dmData.tbBuildingsBookId.AsString);
+      WriteLn(f, '    name: ' + dmData.tbBuildingsBook.Value);
+      WriteLn(f, '  reg_id: ' + dmData.tbBuildingsRegId.Value);
+
+      WriteLn(f, '  addr:');
+      WriteLn(f, '    city:');
+      WriteLn(f, '      name:' + dmData.tbBuildingsCity.Value);
+      WriteLn(f, '    street:');
+      WriteLn(f, '      type_id:' + dmData.tbBuildingsAddrType.AsString);
+      WriteLn(f, '      name:' + dmData.tbBuildingsAddrName.Value);
+      WriteLn(f, '    addr_build:' + dmData.tbBuildingsAddrBuild.Value);
+      WriteLn(f, '    addr_flat:' + dmData.tbBuildingsAddrFlat.Value);
+
+      WriteLn(f, '  owner:');
+      WriteLn(f, '    owner:' + dmData.tbBuildingsOwnerName.Value);
+      WriteLn(f, '    owner_init:' + dmData.tbBuildingsOwnerInit.Value);
+
+      WriteLn(f, '  base_id: ' + dmData.tbBuildingsBaseId.Value);
+
+      WriteLn(f, '  base_date: ' + FormatDateTime('dd.mm.y', dmData.tbBuildingsBaseDate.Value));
+      WriteLn(f, '  reg_date: ' + FormatDateTime('dd.mm.y', dmData.tbBuildingsRegDate.Value));
+
+      if dmData.tbBuildingsAppendix.Value <> '' then
+      begin
+        Writeln(f, '  comment:');
+        Writeln(f, '    ' + dmData.tbBuildingsRegId.Value);
+        Writeln(f, '    ' + dmData.tbBuildingsAppendix.AsString);
+      end;
+      dmData.tbBuildings.Next;
+      pbStatus.Position := pbStatus.Position + 1;
+    end;
+    CloseFile(f);
+    pbStatus.Hide;
+    MessageDlg('Данные успешно экспортированы в ' + sdYML.FileName, mtInformation, [mbOk], 0);
+  end;
 end;
 
 end.

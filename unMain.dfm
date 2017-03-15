@@ -1,7 +1,7 @@
 object fmMain: TfmMain
-  Left = 350
-  Top = 130
-  Width = 858
+  Left = 377
+  Top = 165
+  Width = 812
   Height = 480
   Caption = #1055#1088#1080#1074#1072#1090#1080#1079#1072#1094#1080#1103
   Color = clBtnFace
@@ -42,15 +42,15 @@ object fmMain: TfmMain
   OnClose = FormClose
   OnCreate = FormCreate
   DesignSize = (
-    842
-    422)
+    804
+    426)
   PixelsPerInch = 96
   TextHeight = 13
   object dbgdRegistration: TDBGrid
     Left = 0
     Top = 41
-    Width = 842
-    Height = 381
+    Width = 804
+    Height = 385
     Align = alClient
     DataSource = dmData.dsBuildings
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -110,7 +110,7 @@ object fmMain: TfmMain
   object pnFilter: TPanel
     Left = 0
     Top = 0
-    Width = 842
+    Width = 804
     Height = 41
     Align = alTop
     Caption = 'pnFilter'
@@ -142,6 +142,9 @@ object fmMain: TfmMain
       end
       object N7: TMenuItem
         Action = aImport
+      end
+      object YML1: TMenuItem
+        Action = aYML
       end
     end
     object N8: TMenuItem
@@ -202,6 +205,10 @@ object fmMain: TfmMain
       Caption = #1055#1086#1080#1089#1082' '#1087#1088#1086#1087#1091#1097#1077#1085#1085#1099#1093
       OnExecute = aFindLooseExecute
     end
+    object aYML: TAction
+      Caption = 'YML'
+      OnExecute = aYMLExecute
+    end
   end
   object sdSave: TSaveDialog
     DefaultExt = 'dat'
@@ -221,5 +228,11 @@ object fmMain: TfmMain
     OnTimer = tmAutosaveTimer
     Left = 16
     Top = 64
+  end
+  object sdYml: TSaveDialog
+    DefaultExt = 'dat'
+    Filter = #1060#1072#1081#1083#1099' '#1076#1072#1085#1085#1099#1093' (*.dat)|*.dat|'#1042#1089#1077' '#1092#1072#1081#1083#1099' (*.*)|*.*'
+    Left = 80
+    Top = 8
   end
 end
